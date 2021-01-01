@@ -50,7 +50,7 @@ Adicione a linha no início de onde você irá utilizar:
 use  AndreGasparin\Plugins\Leaflet\LeafletMap;
 
 Depois utilize a classe e insira o mapa em qualquer element que desejar, exemplo:
-<pre>
+```html
 <?php
 use  AndreGasparin\Plugins\Leaflet\LeafletMap;
  
@@ -85,7 +85,7 @@ class LeafletPage extends TPage
         parent::add( $content );
     }
 }
-</pre>
+```
 
 ## Configuração para Desenvolvimento
 
