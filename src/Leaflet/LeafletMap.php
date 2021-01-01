@@ -157,9 +157,10 @@ class LeafletMap extends TElement
          
         parent::add( $style );
         parent::add( $script );
-        parent::add( $content );
-  
         parent::show();
+        
+        return  $content;
+  
     }
 
 }
