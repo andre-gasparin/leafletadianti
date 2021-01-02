@@ -2,7 +2,7 @@
 > Funções em php para quem quer criar mapas sem manipular o javascript.
 
 <p align="center">
-<img src="https://img.shields.io/badge/VERSÃO-1.0.0-green">
+<img src="https://img.shields.io/badge/VERSÃO-1.0.1-green">
 <img src="https://img.shields.io/badge/Licença-GNU 3.0-success">
 <img src="https://img.shields.io/badge/PHP-Adianti-blue">
 <img src="https://img.shields.io/badge/PHP->7.2-blueviolet">
@@ -50,6 +50,31 @@ Adicione a linha no início de onde você irá utilizar:
 use  AndreGasparin\Plugins\Leaflet\LeafletMap;
 
 Depois utilize a classe e insira o mapa em qualquer element que desejar, exemplo:
+
+
+```html
+<?php
+use  AndreGasparin\Plugins\Leaflet\LeafletMap;
+ 
+class LeafletPage extends TPage
+{
+    function __construct()
+    {
+        parent::__construct();
+        
+        $map = new LeafletMap('51.505','-0.09','13', 'google'); // set initial coordinates
+        
+        $content = new TElement('div');
+        $content->id = 'my-map';
+        $content->add( $map );
+ 
+        parent::add( $content );
+    }
+}
+```
+
+Exemplo de uso de todas as funções:
+
 ```html
 <?php
 use  AndreGasparin\Plugins\Leaflet\LeafletMap;
@@ -71,18 +96,25 @@ class LeafletPage extends TPage
         $map->setSize('100%', '400'); //set map size  
         //$map->width = '100%';
         //$map->height = '600px';
-       // $map->myLocation(true); // use gps to show and center my location, use true to display poupup with precision
+        //$map->myLocation(true); // use gps to show and center my location, use true to display poupup with precision
         $map->addMarker('51.505', '-0.09', 'teste'); // add point on map
         $map->addJsonMarker($points_json);
         $map->center(); //center map to view all points      
         $map = $map->show(); //create map
+		
+		$map->enableAddOnePoint('allPointsJson');
+        //$map->enableAddPoints('allPointsJson');
         
         $content = new TElement('div');
         $content->id = 'my-map';
         $content->add( $map );
-        $content->add( $map2 );
+        
 
         parent::add( $content );
+		
+		$allPointsJson = new TEntry('allPointsJson');
+        $allPointsJson->setSize("100%");
+        parent::add( $allPointsJson );
     }
 }
 ```
@@ -100,6 +132,13 @@ Caso queira implementar algo no sistema, utilize os padrões do Adianti Framewor
 
 * 1.0.0
     * Projeto criado
+* 1.0.1
+    * adicionado enableAddOnePoint(RETORNO)
+		Você pode adicionar um mapa que aceite apenas 1 marcador, o usuário tem a opção de clicar novamente no mapa e alterar o local.
+		"Retorno" deve passar o nome do campo TEntry criado no formulário
+	* adicionado enableAddPoints(RETORNO)
+		Você pode adicionar um mapa que aceite vários marcadores, o usuário tem a opção de clicar novamente no marcador para exclui-lo.
+		"Retorno" deve passar o nome do campo TEntry criado no formulário
 
 ## Meta
 
