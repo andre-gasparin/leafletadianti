@@ -84,7 +84,7 @@ class LeafletPage extends TPage
     function __construct()
     {
 
-        $points = array();
+       $points = array();
         $points[] = ['lat' => 50.505, 'lng'=> -0.09, 'description'];  
         $points[] = ['lat' => 49.505, 'lng'=> -0.09, 'description49'];  
 
@@ -99,22 +99,30 @@ class LeafletPage extends TPage
         //$map->myLocation(true); // use gps to show and center my location, use true to display poupup with precision
         $map->addMarker('51.505', '-0.09', 'teste'); // add point on map
         $map->addJsonMarker($points_json);
-        $map->center(); //center map to view all points      
-        $map = $map->show(); //create map
-		
-		$map->enableAddOnePoint('allPointsJson');
-        //$map->enableAddPoints('allPointsJson');
+        $map->center(); //center map to view all points  
         
-        $content = new TElement('div');
-        $content->id = 'my-map';
-        $content->add( $map );
-        
+        //#Version 1.0.1
+            $map->enableAddOnePoint('allPointsJson');
+            $map->enableAddPoints('allPointsJson');
+            //field
+            $allPointsJson = new TEntry('allPointsJson');
+            $allPointsJson->setSize("100%");
+            parent::add( $allPointsJson );
+        //#End Version 1.0.1
 
+        //#Version 1.0.2
+            $map->searchAddress('autocompleteLeaflet');
+            $map = $map->show(); //create map
+            //field
+            $autocompleteLeaflet = new TCombo('autocompleteLeaflet');
+            $autocompleteLeaflet->setSize("100%");     
+            parent::add( $autocompleteLeaflet );    
+        //#End Version 1.0.2
+
+        $content = new TElement('div');
+        $content->id = 'testediv';
+        $content->add( $map );
         parent::add( $content );
-		
-		$allPointsJson = new TEntry('allPointsJson');
-        $allPointsJson->setSize("100%");
-        parent::add( $allPointsJson );
     }
 }
 ```
@@ -135,10 +143,16 @@ Caso queira implementar algo no sistema, utilize os padrões do Adianti Framewor
 * 1.0.1
     * adicionado enableAddOnePoint(RETORNO)
 		Você pode adicionar um mapa que aceite apenas 1 marcador, o usuário tem a opção de clicar novamente no mapa e alterar o local.
-		"Retorno" deve passar o nome do campo TEntry criado no formulário
+		"Retorno" deve passar o nome do campo TEntry/THidden criado no formulário
 	* adicionado enableAddPoints(RETORNO)
 		Você pode adicionar um mapa que aceite vários marcadores, o usuário tem a opção de clicar novamente no marcador para exclui-lo.
-		"Retorno" deve passar o nome do campo TEntry criado no formulário
+		"Retorno" deve passar o nome do campo TEntry/THidden criado no formulário
+* 1.0.2
+    * adicionado searchAddress(RETORNO, addMarker)
+		Você pode adicionar uma busca de geolocation, ou seja, pesquisa por endereço.
+		"Retorno" deve passar o nome do campo TCombo criado no formulário
+		"addMarker" = true, ele irá inserir automaticamente um alfinete no endereço localizado
+	
 
 ## Meta
 

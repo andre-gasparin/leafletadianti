@@ -144,7 +144,53 @@ class LeafletMap extends TElement
             });
             ";
     }
-    
+
+    public function searchAddress($return, $addMarker = false)
+    {
+        if( $addMarker )
+            $addmarker = "
+            point".$this->id."location = L.marker(coordinates,{icon:  Licon, draggable:'true'}).addTo(Group".$this->id.");
+            allPointsJson();
+            message('Inserido','Alfinete inserido!', 'success');
+            ";
+        else  $addmarker = "";
+            
+        $this->javascript .= "
+        $('[name=\"".$return."\"]').select2({
+            minimumInputLength: 2,
+            tags: [],
+            ajax: {
+                url: 'vendor/andregasparin/plugins/src/Leaflet/apiAddress.php?method=SearchAddress',
+                dataType: 'json',
+                type: 'GET',
+                delay: 200,
+                data: function (term) {
+                    return {
+                        term: term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (value, key) {
+                            return {
+                                id: value.id,
+                                text: value.text
+                            }
+                        })
+                    };
+                }
+            }
+        }).on('select2:select', function (e) {                   
+            var latlng = e.params.data.id.split(',');
+            var coordinates = [];
+            coordinates.push(latlng[0]);
+            coordinates.push(latlng[1]);
+            ".$addmarker."
+            map.setView(coordinates, '16');
+        });
+        ";
+    }
+
     public function createMap()
     {
         $javascript = (!empty($this->javascript)) ? $this->javascript : '';
@@ -157,9 +203,7 @@ class LeafletMap extends TElement
                 });  
                 var Group".$this->id." = L.featureGroup().addTo(map).on('click', groupClick);
                 var Licon = new LeafIcon({iconUrl: 'vendor/andregasparin/plugins/src/Leaflet/marker-icon.png'});
-                
                 ".$javascript."    
-
                 function allPointsJson()
                 { 
                     JsonGeom = '';
