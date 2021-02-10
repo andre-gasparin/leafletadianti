@@ -22,7 +22,7 @@ Abra seu cmd (prompt), com o comando "cd c:/pasta/do/projeto" navegue até a rai
 Execute os seguintes comandos (podem variar no caso de usar linux ou mac, ex utilizar sudo no início):
 
 ```html
-composer.phar config repositories.accordion vcs https://github.com/andre-gasparin/leafletadianti
+composer.phar config repositories.leaflet vcs https://github.com/andre-gasparin/leafletadianti
 
 composer require andregasparin/plugins @dev
 ```
@@ -35,7 +35,7 @@ Adicione no inicio em 'repositories': { "type": "vcs", "url": "https://github.co
 Exemplo:
 ```html
 {
-  "repositories": [
+  "repositories": {
 	{ "type": "vcs", "url": "https://github.com/andre-gasparin/leafletadianti" },
 	...
 ```
