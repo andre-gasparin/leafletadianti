@@ -41,7 +41,7 @@ Exemplo:
 ```
 Agora abra o prompt e execute apenas o comando:
 ```html
-composer require andregasparin/plugins @dev
+composer require andregasparin/plugins dev-main
 ```
 
 ## Utilização
