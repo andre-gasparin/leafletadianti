@@ -19,12 +19,10 @@ https://leafletjs.com/
 
 Abra seu cmd (prompt), com o comando "cd c:/pasta/do/projeto" navegue até a raiz do seu projeto em adianti.
 
-Execute os seguintes comandos (podem variar no caso de usar linux ou mac, ex utilizar sudo no início):
+Execute o seguinte comando (podem variar no caso de usar linux ou mac, ex utilizar sudo no início):
 
 ```html
-composer.phar config repositories.leaflet vcs https://github.com/andre-gasparin/leafletadianti
-
-composer require andregasparin/plugins @dev
+composer require andregasparin/leafletadianti @dev
 ```
 Caso não consiga executar esses comandos:
 
@@ -41,20 +39,20 @@ Exemplo:
 ```
 Agora abra o prompt e execute apenas o comando:
 ```html
-composer require andregasparin/plugins dev-main
+composer require andregasparin/leafletadianti dev-main
 ```
 
 ## Utilização
 
 Adicione a linha no início de onde você irá utilizar:
-use  AndreGasparin\Plugins\Leaflet\LeafletMap;
+use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
 
 Depois utilize a classe e insira o mapa em qualquer element que desejar, exemplo:
 
 
 ```html
 <?php
-use  AndreGasparin\Plugins\Leaflet\LeafletMap;
+use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
  
 class LeafletPage extends TPage
 {
@@ -77,7 +75,7 @@ Exemplo de uso de todas as funções:
 
 ```html
 <?php
-use  AndreGasparin\Plugins\Leaflet\LeafletMap;
+use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
  
 class LeafletPage extends TPage
 {
@@ -152,7 +150,8 @@ Caso queira implementar algo no sistema, utilize os padrões do Adianti Framewor
 		Você pode adicionar uma busca de geolocation, ou seja, pesquisa por endereço.
 		"Retorno" deve passar o nome do campo TCombo criado no formulário
 		"addMarker" = true, ele irá inserir automaticamente um alfinete no endereço localizado
-	
+* 1.0.3
+    * pacote do composer criado
 
 ## Meta
 
