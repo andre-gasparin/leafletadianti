@@ -15,6 +15,11 @@ https://leafletjs.com/
 
 ## Instalação
 
+Para instalar no Adianti Builder, vá na aba de "composer packages" e adicione:
+```html
+andregasparin/leafletadianti:dev-main
+```
+
 É necessário que você tenha o composer instalado.
 
 Abra seu cmd (prompt), com o comando "cd c:/pasta/do/projeto" navegue até a raiz do seu projeto em adianti.
