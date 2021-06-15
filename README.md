@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/badge/PHP->7.2-blueviolet">
 </p>
 
-<img src="https://github.com/andre-gasparin/leafletadianti/blob/main/src/Leaflet/readme.png">
+<img src="https://github.com/andre-gasparin/leafletadianti/blob/main/src/readme.png">
 
 Link Leaflet.js:
 https://leafletjs.com/
@@ -28,23 +28,6 @@ Execute o seguinte comando (podem variar no caso de usar linux ou mac, ex utiliz
 
 ```html
 composer require andregasparin/leafletadianti
-```
-Caso não consiga executar esses comandos:
-
-Abra o composer.json (na raiz do projeto)
-
-Adicione no inicio em 'repositories': { "type": "vcs", "url": "https://github.com/andre-gasparin/leafletadianti" },
-
-Exemplo:
-```html
-{
-  "repositories": {
-	{ "type": "vcs", "url": "https://github.com/andre-gasparin/leafletadianti" },
-	...
-```
-Agora abra o prompt e execute apenas o comando:
-```html
-composer require andregasparin/leafletadianti dev-main
 ```
 
 ## Utilização
@@ -66,10 +49,11 @@ class LeafletPage extends TPage
         parent::__construct();
         
         $map = new LeafletMap('51.505','-0.09','13', 'google'); // set initial coordinates
+        $show_map = $map->show();
         
         $content = new TElement('div');
         $content->id = 'my-map';
-        $content->add( $map );
+        $content->add( $show_map );
  
         parent::add( $content );
     }
@@ -87,7 +71,7 @@ class LeafletPage extends TPage
     function __construct()
     {
 
-       $points = array();
+        $points = array();
         $points[] = ['lat' => 50.505, 'lng'=> -0.09, 'description'];  
         $points[] = ['lat' => 49.505, 'lng'=> -0.09, 'description49'];  
 
@@ -103,7 +87,8 @@ class LeafletPage extends TPage
         $map->addMarker('51.505', '-0.09', 'teste'); // add point on map
         $map->addJsonMarker($points_json);
         $map->center(); //center map to view all points  
-        
+	$show_map = $map->show();        
+
         //#Version 1.0.1
             $map->enableAddOnePoint('allPointsJson');
             $map->enableAddPoints('allPointsJson');
@@ -124,7 +109,7 @@ class LeafletPage extends TPage
 
         $content = new TElement('div');
         $content->id = 'testediv';
-        $content->add( $map );
+        $content->add( $show_map );
         parent::add( $content );
     }
 }
