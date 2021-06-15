@@ -193,6 +193,7 @@ class LeafletMap extends TElement
 
     public function createMap()
     {
+      
         $javascript = (!empty($this->javascript)) ? $this->javascript : '';
         TScript::create("
         var map = '';
@@ -247,11 +248,11 @@ class LeafletMap extends TElement
         $content->id = $this->id;
         $content->class = 'leaflet';
          
-        parent::add( $style );
-        parent::add( $script );
-        parent::show();
+        // parent::add( $style );
+        // parent::add( $script );
+        // parent::show();
         
-        return  $content;
+        return  $style.$script.$content;
     }
 
 }
