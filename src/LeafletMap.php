@@ -1,5 +1,5 @@
 <?php
-namespace AndreGasparin\Plugins\Leaflet;
+namespace AndreGasparin\Leafletadianti;
 
 use Adianti\Widget\Base\TElement;
 use Adianti\Widget\Base\TScript;
@@ -27,7 +27,7 @@ class LeafletMap extends TElement
     {
         parent::__construct('div');
         
-        TStyle::importFromFile('vendor/andregasparin/plugins/src/Leaflet/leaflet.css');
+        TStyle::importFromFile('vendor/andregasparin/leafletadianti/src/leaflet.css');
 
         $this->id = 'mapall' . uniqid();
 
@@ -77,7 +77,7 @@ class LeafletMap extends TElement
         {
            
             $poupup = (!empty($poupup)) ? '.bindPopup("'.$poupup.'")' : '';
-            $icon =   (empty($icon))    ?  'vendor/andregasparin/plugins/src/Leaflet/marker-icon.png' : $icon ;
+            $icon =   (empty($icon))    ?  'vendor/andregasparin/leafletadianti/src/marker-icon.png' : $icon ;
 
             $this->locations_to_center['point'][] = ['lat'=>$lat, 'lng'=>$lng];
             $this->javascript .= ' L.marker(['.$lat.', '.$lng.'], {icon:  new LeafIcon({iconUrl: \''.$icon.'\'})})'.$poupup.'.addTo(map); ';
@@ -160,7 +160,7 @@ class LeafletMap extends TElement
             minimumInputLength: 2,
             tags: [],
             ajax: {
-                url: 'vendor/andregasparin/plugins/src/Leaflet/apiAddress.php?method=SearchAddress',
+                url: 'vendor/andregasparin/leafletadianti/src/apiAddress.php?method=SearchAddress',
                 dataType: 'json',
                 type: 'GET',
                 delay: 200,
@@ -202,7 +202,7 @@ class LeafletMap extends TElement
                     options: { iconSize: [25, 40], iconAnchor: [9, 40], popupAnchor: [4, -37] }
                 });  
                 var Group".$this->id." = L.featureGroup().addTo(map).on('click', groupClick);
-                var Licon = new LeafIcon({iconUrl: 'vendor/andregasparin/plugins/src/Leaflet/marker-icon.png'});
+                var Licon = new LeafIcon({iconUrl: 'vendor/andregasparin/leafletadianti/src/marker-icon.png'});
                 ".$javascript."    
                 function allPointsJson()
                 { 
@@ -241,7 +241,7 @@ class LeafletMap extends TElement
 
         $script = new TElement('script');
         $script->type = 'text/javascript';
-        $script->src  = 'vendor/andregasparin/plugins/src/Leaflet/leaflet.js';
+        $script->src  = 'vendor/andregasparin/leafletadianti/src/leaflet.js';
 
         $content = new TElement('div');
         $content->id = $this->id;
