@@ -33,14 +33,14 @@ composer require andregasparin/leafletadianti
 ## Utilização
 
 Adicione a linha no início de onde você irá utilizar:
-use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
+use AndreGasparin\Leafletadianti\LeafletMap;
 
 Depois utilize a classe e insira o mapa em qualquer element que desejar, exemplo:
 
 
 ```html
 <?php
-use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
+use AndreGasparin\Leafletadianti\LeafletMap;
  
 class LeafletPage extends TPage
 {
@@ -64,7 +64,7 @@ Exemplo de uso de todas as funções:
 
 ```html
 <?php
-use  AndreGasparin\leafletadianti\Leaflet\LeafletMap;
+use AndreGasparin\Leafletadianti\LeafletMap;
  
 class LeafletPage extends TPage
 {
@@ -142,6 +142,9 @@ Caso queira implementar algo no sistema, utilize os padrões do Adianti Framewor
 		"addMarker" = true, ele irá inserir automaticamente um alfinete no endereço localizado
 * 1.0.3
     * pacote do composer criado
+* 1.0.4
+* 1.0.5
+   * Correção de bugs
 
 ## Meta
 
